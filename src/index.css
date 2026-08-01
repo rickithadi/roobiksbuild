@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand tokens extracted from roobiksbuilds.techmirzafiverr.com — see CONTENT.md § Colors / Fonts */
+  --color-paper: #faf6ef;
+  --color-paper-deep: #f1e9db;
+  --color-ink: #191410;
+  --color-ink-soft: #322a22;
+  --color-brand: #6b3e22;
+  --color-brand-deep: #4a2a17;
+  --color-brand-bright: #8a5730;
+  --color-pine: #132728;
+  --color-pine-deep: #0c1a1b;
+  --color-line: #ddd3c1;
+
+  --font-display: "Libre Baskerville", "Iowan Old Style", Georgia, serif;
+  --font-body: "Roboto", "Helvetica Neue", Arial, sans-serif;
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Base element styles must live in Tailwind's "base" layer — unlayered CSS sits
+   above every @layer in the cascade, so without this, plain selectors like
+   `h1 { color: ... }` would beat utility classes such as `text-paper`. */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-brand);
+    color: var(--color-paper);
+  }
+}
+
+/* Dashed corner-bracket motif, lifted from the client's own "RB" wordmark frame —
+   used as a recurring framing device instead of generic drop-shadow cards. */
+.rb-frame {
+  position: relative;
+}
+.rb-frame::before,
+.rb-frame::after {
+  content: "";
+  position: absolute;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-color: currentColor;
+  opacity: 0.55;
+}
+.rb-frame::before {
+  top: -0.5rem;
+  left: -0.5rem;
+  border-top: 2px dashed currentColor;
+  border-left: 2px dashed currentColor;
+}
+.rb-frame::after {
+  bottom: -0.5rem;
+  right: -0.5rem;
+  border-bottom: 2px dashed currentColor;
+  border-right: 2px dashed currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
