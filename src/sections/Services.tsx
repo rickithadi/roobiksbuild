@@ -50,35 +50,46 @@ export default function Services({ full = false }: { full?: boolean }) {
           animate={inView ? "show" : "hidden"}
           className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {list.map((s) => (
-            <motion.article
-              key={s.slug}
-              variants={item}
-              className="group flex flex-col overflow-hidden rounded-sm border border-line bg-paper"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={s.image}
-                  alt={s.name}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand">
-                  {s.category}
-                </p>
-                <h3 className="mt-2 font-display text-xl font-bold text-ink">
-                  <Link to="/services" className="hover:text-brand">
-                    {s.name}
-                  </Link>
-                </h3>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">
-                  {s.description}
-                </p>
-              </div>
-            </motion.article>
-          ))}
+          {list.map((s, i) => {
+            const featured = !full && i === 0;
+            return (
+              <motion.article
+                key={s.slug}
+                variants={item}
+                className={`group flex flex-col overflow-hidden rounded-sm border border-line bg-paper ${
+                  featured ? "sm:col-span-2 sm:flex-row lg:col-span-2" : ""
+                }`}
+              >
+                <div
+                  className={`overflow-hidden ${
+                    featured ? "aspect-[4/3] sm:aspect-auto sm:w-2/5 sm:shrink-0" : "aspect-[4/3]"
+                  }`}
+                >
+                  <img
+                    src={s.image}
+                    alt={s.name}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col justify-center p-6">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-brand">
+                    {s.category}
+                  </p>
+                  <h3
+                    className={`mt-2 font-display font-bold text-ink ${featured ? "text-2xl" : "text-xl"}`}
+                  >
+                    <Link to="/services" className="hover:text-brand">
+                      {s.name}
+                    </Link>
+                  </h3>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">
+                    {s.description}
+                  </p>
+                </div>
+              </motion.article>
+            );
+          })}
         </motion.div>
       </div>
     </section>

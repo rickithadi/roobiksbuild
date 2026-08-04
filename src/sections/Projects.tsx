@@ -47,23 +47,25 @@ export default function Projects({ full = false }: { full?: boolean }) {
                 i === 0 ? "sm:col-span-2 sm:row-span-2" : ""
               }`}
             >
-              <img
-                src={p.image}
-                alt={p.title}
-                loading="lazy"
-                className={`w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
-                  i === 0 ? "aspect-[4/3] sm:aspect-[16/11]" : "aspect-[4/3]"
-                }`}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-bright">
-                  {p.category}
-                </p>
-                <h3 className="mt-1 font-display text-lg font-bold leading-snug text-paper">
-                  {p.title}
-                </h3>
-              </div>
+              <Link to={`/projects/${p.slug}`} className="block">
+                <img
+                  src={p.image}
+                  alt={p.title}
+                  loading="lazy"
+                  className={`w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
+                    i === 0 ? "aspect-[4/3] sm:aspect-[16/11]" : "aspect-[4/3]"
+                  }`}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-bright">
+                    {p.category}
+                  </p>
+                  <h3 className="mt-1 font-display text-lg font-bold leading-snug text-paper">
+                    {p.title}
+                  </h3>
+                </div>
+              </Link>
             </motion.article>
           ))}
         </motion.div>

@@ -20,7 +20,7 @@ Owner/estimator: **Gabe Rooker** (confirmed via footer LinkedIn link `linkedin.c
 Founded: claims "12 Years Of Glorious Experience" (source badge text reads "12 Years Of Glorius Experience" — typo, correct to "Glorious" in rebuild)
 
 ## Multi-page Scope
-In scope: Home, About, Services, Projects, Blog (index + articles), Contact, 404
+In scope: Home, About, Services, Projects (index + individual detail pages), Blog (index + articles), Contact, 404
 Out of scope (not rebuilt — thin/unscraped on source): FAQ, Gallery, Quote form (folded into Contact/quote CTA), Privacy Policy, Terms & Conditions — note as out-of-scope pages in handoff.
 
 ## Navigation
@@ -111,6 +111,50 @@ Credential: "12 Years Of Glorious Experience" (kept, typo-corrected)
 5. Electric Horse Fence for an Equestrian Facility
 6. Cattle Fencing for a Large Ranch
 
+## Project Case Studies (verbatim — found during critique pass, added late)
+The homepage/`/projects` grid captions above are only titles. The source site also has individual
+`/project/:slug` detail pages for each item with substantial real content (client/property name,
+location, completion date, and a 3-paragraph Challenge → Solution → Result narrative) that was
+missed in the original Phase 1 crawl (only the grid was scraped, not the per-project sub-pages).
+Fetched directly via curl during the critique pass and added verbatim to `src/lib/site.ts` +
+new `/projects/:slug` detail pages (`src/pages/ProjectDetail.tsx`).
+
+### Bi-Folding Driveway Gate with Keypad Entry
+Client: Peterson Family — Location: Miami, FL — Completed: 01 Oct, 2024
+Challenge: "The Petersons wanted an automated driveway gate that would provide security while maximizing space. Since their driveway had limited clearance for a traditional sliding gate, they opted for a bi-folding gate system that opens quickly and efficiently."
+Solution: "We installed a custom aluminum bi-folding gate, designed to fold inward, minimizing the space required for operation. The gate was powered by a high-performance motor, enabling smooth and quiet opening/closing. For security, we added a keypad entry system and remote-controlled access, allowing the family to control entry with ease."
+Result: "The result was a sleek, space-efficient, and secure entrance for their home. The Petersons were delighted with how the gate blended modern functionality with aesthetic appeal, giving them both convenience and security in one elegant solution."
+
+### Smart Sliding Gate for a Private Community Entrance
+Client: Maplewood Gated Community — Location: Denver, CO — Completed: 01 Sep, 2024
+Challenge: "The Maplewood community needed a secure, automated entry gate that would provide controlled access for residents and guests. They required a modern sliding gate system with smart features for remote access and security monitoring."
+Solution: "We installed a reinforced steel sliding gate powered by a high-speed automation system, allowing seamless operation with minimal noise. The gate was equipped with RFID and keypad access for residents, as well as an intercom and remote control system for visitors. Additionally, we integrated CCTV cameras and motion sensors for real-time security monitoring."
+Result: "This upgrade significantly improved security while offering residents convenience and peace of mind. The automated system reduced traffic congestion at the entrance and allowed for efficient access control, making Maplewood a safer and more efficient gated community."
+
+### Modern Horizontal Slat Fence for a Contemporary Home
+Client: Jackson Residence — Location: Austin, TX — Completed: 01 Aug, 2024
+Challenge: "The Jackson family wanted a modern fencing solution that would provide privacy while maintaining a minimalist, contemporary design. They were particularly drawn to horizontal wood slats, which offer both privacy and a sleek architectural look."
+Solution: "We installed a 6.5-foot horizontal slat fence using stained cedar planks with a steel frame for reinforcement. The natural wood grain was enhanced with a semi-transparent stain, preserving the wood's beauty while protecting it from moisture and sun exposure. For added functionality, we integrated built-in LED lighting along the posts, creating an ambient glow at night."
+Result: "The completed fence gave the Jackson residence a modern and luxurious feel, seamlessly complementing their home's exterior. The family was thrilled with the combination of privacy, elegance, and durability, making their outdoor space feel more exclusive and stylish."
+
+### Ornamental Wrought Iron Fence for a Luxury Estate
+Client: Anderson Family Estate — Location: Beverly Hills, CA — Completed: 01 Jul, 2024
+Challenge: "The Anderson family wanted a high-end decorative fence that would provide security without compromising the aesthetic appeal of their luxury estate. They were looking for an ornate wrought iron fence with custom design elements to match the grandeur of their property."
+Solution: "We designed and installed a 6-foot wrought iron fence featuring intricate scrollwork and gold-accented spear tops for an elegant yet secure perimeter. To enhance durability, we used powder-coated iron that is resistant to rust and weather damage. A matching automatic gate was also installed to complement the fence and provide easy access to the driveway."
+Result: "The finished project exceeded expectations, giving the estate a regal and timeless appearance. The Anderson family appreciated how the fence blended security, functionality, and artistic craftsmanship while adding significant value to their property."
+
+### Electric Horse Fence for an Equestrian Facility
+Client: Brightstar Stables — Location: Lexington, KY — Completed: 01 Jun, 2024
+Challenge: "Brightstar Stables needed a safe yet effective fencing solution for their horse training facility. They required a flexible and highly visible fence to prevent injuries while keeping their horses securely enclosed."
+Solution: "We installed an electric rope fence with insulated fiberglass posts, which provided a gentle deterrent without causing harm to the horses. The fencing system included solar-powered electric chargers, making it an energy-efficient choice. The bright white rope ensured visibility, preventing horses from accidentally running into the fence."
+Result: "The stables now have a well-secured training area that is both functional and safe. The owners were pleased with the low-maintenance nature of the fence and its effectiveness in managing horse movement without the risk of injury."
+
+### Cattle Fencing for a Large Ranch
+Client: Willow Creek Farms — Location: Kansas City, MO — Completed: 01 May, 2024
+Challenge: "Willow Creek Farms needed a strong and reliable fencing system to secure their cattle grazing fields. Their previous fencing had deteriorated over time, leading to livestock wandering off and safety concerns. They required a sturdy, long-lasting solution that would keep their animals safe while withstanding harsh weather conditions."
+Solution: "We installed a 5-strand barbed wire fence with treated wooden posts, spaced strategically to ensure stability and prevent livestock from breaking through. The barbed wire was galvanized for rust resistance, and we reinforced corners with concrete footings to prevent sagging over time."
+Result: "The result was a secure and well-defined grazing area that provided maximum protection for the farm's cattle. The new fence significantly reduced the risk of livestock straying while minimizing maintenance efforts. The farm owners were thrilled with the durability and cost-effectiveness of the solution."
+
 ## Blog Topics (verbatim titles/dates/excerpts)
 ### Best Fencing Options for Farms and Ranches — 22 Feb 2025
 Excerpt: "Farmers and ranchers require fencing solutions that offer durability, affordability, and efficiency..."
@@ -182,6 +226,9 @@ Custom photography: appears to be stock/template photography throughout (not ver
 ### Projects gallery — binding confidence: MISMATCHED ON SOURCE, do not carry over photos
 Source structure: 6 project cards, each with a fencing-themed heading (see § Projects) but bound to `uploads/projects/...jpg` photos that depict generic desk/interior/office stock scenes — confirmed visually in the reference screenshot (desk, laptop, clock, decorative objects; no fences visible). This is a genuine content bug on the live site.
 Decision: do NOT reuse the source's project photos (would perpetuate the bug and mislabel stock photos as project work). Rebuild uses appropriately-themed fencing/gate/property stock photography per project caption instead, clearly as illustrative imagery, flagged in Image Placeholders.
+
+### Project detail pages — binding confidence: EXPLICIT FROM SOURCE, added in critique pass
+Each of the 6 projects also has a real `/project/:slug` detail sub-page on the source with a client/property name, city/state, completion date, and a Challenge/Solution/Result narrative — this was missed in the original Phase 1 crawl (which only covered the homepage grid) and was fetched directly during the critique pass. See § Project Case Studies for the full verbatim content, now live at `/projects/:slug` in the rebuild (`src/pages/ProjectDetail.tsx`). The detail pages reuse the same verified Unsplash photography as the grid (not the source's mismatched gallery images, which repeat the same broken `uploads/projects/gallery/...` files).
 
 ## Embedded Videos
 None found.
