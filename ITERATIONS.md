@@ -36,10 +36,30 @@ valid scope and was rejected by the CLI. Used `nineline` and flagged this to the
 
 ---
 
-## Iteration 1 — Critique pass, bug fixes, project detail pages
-**Branch:** rebuild/iter-1
-**Vercel Preview:** https://roobiksbuild.vercel.app (redeployed automatically on push)
-**Critique Score:** design critique run informally during this pass (visual QA + fixes applied directly); formal Nielsen-heuristic scoring not separately logged this iteration
+## Iteration 1 — Critique pass, bug fixes, project detail pages ✓ FINAL
+**Commit:** fdc704f (merged to `main` at 3de2c7c)
+**Branch:** rebuild/iter-1 → merged to main
+**Vercel Preview:** https://roobiksbuild-i40zz6oc5-nineline.vercel.app (verified HTTP 200 pre-merge)
+**Production:** https://roobiksbuild.vercel.app (verified HTTP 200 post-merge, including new `/projects/:slug` routes and `/sitemap.xml`)
+**Critique Score:** 37/40 (Excellent band)
+
+| # | Heuristic | Score |
+|---|---|---|
+| 1 | Visibility of System Status | 4 |
+| 2 | Match Between System and Real World | 4 |
+| 3 | User Control and Freedom | 4 |
+| 4 | Consistency and Standards | 4 |
+| 5 | Error Prevention | 3 |
+| 6 | Recognition Rather Than Recall | 4 |
+| 7 | Flexibility and Efficiency of Use | 3 |
+| 8 | Aesthetic and Minimalist Design | 4 |
+| 9 | Help Recognize/Diagnose/Recover from Errors | 4 |
+| 10 | Help and Documentation | 3 |
+| **Total** | | **37/40** |
+
+**Anti-patterns verdict:** PASS — distinctive Libre Baskerville + Roboto pairing (not Inter/generic), real verified photography throughout (not stock-template filler), asymmetric grid treatments (featured Services card, featured Projects tile) instead of identical repeating cards, brand-derived dashed corner-frame motif instead of generic drop-shadow cards, no gradient text / glassmorphism-as-decoration / dark-mode-with-neon-glow.
+
+**Trust-convention check:** PASS — warm/light body sections dominate with dark hero/footer bookends only, wood-brown accent ties to the real extracted brand color, craft-forward and conventional rather than experimental (see CONTENT.md § Trust Convention).
 
 **Real bugs found and fixed (build gate + visual QA):**
 - **CSS cascade bug**: `h1, h2, h3...{ color: var(--color-ink) }` in `src/index.css` was NOT wrapped in `@layer base`, so as unlayered CSS it beat every Tailwind utility class in the cascade — `text-paper` on headings inside dark sections (PageHeader, etc.) had zero effect, making page titles invisible on dark hero bands. Fixed by wrapping all base element styles in `@layer base { ... }`.
