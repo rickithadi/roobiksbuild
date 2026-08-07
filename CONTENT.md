@@ -3,6 +3,42 @@ Source: https://roobiksbuilds.techmirzafiverr.com/index.php
 Extracted: 2026-08-01
 Extraction method: WebFetch/curl direct (CRW not configured in this environment — no CRW_API_KEY set), Firecrawl markdown scrape for sub-pages, direct curl for rawHtml/CSS asset extraction, Playwright not needed (server-rendered PHP, no JS gating).
 
+## ⚠️ CRITICAL — Real business site discovered post-launch (2026-08-07)
+Everything above and below this notice was extracted from **`roobiksbuilds.techmirzafiverr.com`**, which
+turned out to be a **Fiverr freelancer demo/mockup**, not the client's real, live website. The user later
+pointed to the actual site: **`https://roobiksbuilds.com`** (a Houzz Pro-hosted site, Next.js, real sitemap
+at `/sitemap.xml`). Scraped directly (Firecrawl was out of credits) via curl + parsing the page's embedded
+`__NEXT_DATA__` JSON, which contains the full page-builder content tree (headings, paragraphs, real Houzz
+review data, real project photo galleries) — far cleaner and more reliable than HTML scraping.
+
+**What turned out to be real** (confirmed present verbatim on roobiksbuilds.com):
+- Business name, logo, "Architectural Design" tagline, phone number, both testimonials (Linda Wilkinson,
+  Rosy Arenas — real 5-star Houzz reviews, IDs 2044559 and 2002474), founder Gabe Rooker
+
+**What turned out to be FABRICATED on the demo site** (do not treat as fact going forward):
+- **Email domain**: demo used `grooker@roobikbuilds.com` (typo) — real is `grooker@roobiksbuilds.com`
+- **Address**: demo used a fabricated "121 Second Street, Mount Holly, NJ 08060" — the real address is
+  **Forest Grove, OR 97116** (no street address published). This is a Pacific Northwest business — "PNW
+  inspired design," founder bio confirms Oregon/PDX-area residence. The NJ address was invented by whoever
+  built the Fiverr demo and has no basis in reality.
+- **All 6 "Projects" case studies** (Peterson Family / Bi-Folding Gate, Maplewood Community / Sliding Gate,
+  Jackson Residence / Slat Fence, Anderson Estate / Wrought Iron, Brightstar Stables / Horse Fence, Willow
+  Creek Farms / Cattle Fence) — **these do not exist anywhere on the real site.** Client names, locations,
+  dates, and Challenge/Solution/Result narratives were entirely invented for the demo. I originally treated
+  this as "verbatim source content" per the content-parity rule and built a whole `/projects/:slug` section
+  around it — that was a mistake carried forward from trusting the wrong source, corrected in this pass.
+  **Replaced with the 7 real projects** — see § Real Projects below.
+- **Testimonial text was truncated**: the demo's Linda Wilkinson review cut off mid-story. The real Houzz
+  review is substantially longer — full text now used, see § Testimonials (Real, Full Text).
+
+**What the real site reveals about the business** that the fencing-only demo obscured: Roobiks Builds is a
+**custom builder and renovation company** (decks, patios, fences, cabinetry, kitchen/bath remodels) founded
+**2014** in the "Silicon Forest" of Oregon — fencing is one real, legitimate service among several, not the
+whole business. The rebuild's fencing-forward framing is kept (matches the original brief and the demo
+site's own emphasis), but all specific facts, photos, and project claims are now sourced from the real site.
+
+---
+
 ## Site Type
 Service Business — Home Services / Trades (fencing contractor), with adjacent design-build/renovation credibility (see Trust Convention below).
 
@@ -261,6 +297,162 @@ Verdict: Safe, with a craft-forward direction. Use the extracted wood-brown as t
 User-supplied full-page screenshot of https://roobiksbuilds.techmirzafiverr.com/index.php (provided directly in the task, not re-captured — will reference in PITCH.md).
 
 ## Image Placeholders
-1. Hero — no suitable source photo exists (solid-color hero on source); rebuild uses a licensed/stock full-bleed fencing/craftsmanship photo. TODO: swap for real job-site photography when client supplies it.
-2. Projects gallery (all 6 items) — source photos are mismatched stock (desks/interiors), not fences. Rebuild uses stock photography appropriately matched to each caption (gate, wrought iron, horse fencing, cattle fencing, etc.) as an interim measure. TODO: replace with real completed-project photos — this is the single highest-value asset gap for the client to close.
-3. Stats strip — source counter values are corrupted/unusable; rebuild ships with clearly-round placeholder figures. TODO: client to confirm real customer count, fences installed, years in business, and team size before launch.
+1. ~~Hero — no suitable source photo exists~~ RESOLVED 2026-08-07: real photo now used, see § Real Assets.
+2. ~~Projects gallery — source photos mismatched~~ RESOLVED 2026-08-07: replaced with the 7 real projects and real Houzz photography, see § Real Projects.
+3. Stats strip — source counter values are corrupted/unusable; rebuild ships with clearly-round placeholder figures. TODO: client to confirm real customer count, fences installed, years in business, and team size before launch. (Note: "12 Years" framing is now confirmed accurate — real site states founded 2014.)
+
+---
+
+# Real Site Extraction — roobiksbuilds.com
+Source: https://roobiksbuilds.com (Houzz Pro / Next.js)
+Extracted: 2026-08-07
+Extraction method: curl (server-rendered) + parsed the embedded `<script id="__NEXT_DATA__">` JSON payload directly — the page-builder's full content tree (headings, paragraphs, images, project data, Houzz review data) lives there as structured JSON, far more reliable than scraping rendered HTML. Firecrawl was attempted first but the account was out of credits.
+
+## Real sitemap
+```
+https://roobiksbuilds.com/
+https://roobiksbuilds.com/connect
+https://roobiksbuilds.com/featured-project-page
+https://roobiksbuilds.com/gallery
+https://roobiksbuilds.com/our-story
+https://roobiksbuilds.com/testimonials
+https://roobiksbuilds.com/projects/7537870-kitchen-and-bath-remodel
+https://roobiksbuilds.com/projects/7089592-gales-creek-terrace-fences
+https://roobiksbuilds.com/projects/7116841-closet-organizers
+https://roobiksbuilds.com/projects/7107428-gale-creek-terrace-accented-steps
+https://roobiksbuilds.com/projects/7107435-custom-cedar-patio-cover
+https://roobiksbuilds.com/projects/7110896-wismer-ridge-deck-resurface
+https://roobiksbuilds.com/projects/7112393-murphy-bed-cabinet
+```
+Out of scope for this rebuild pass: `/connect` (contact form only, no unique copy beyond "Dream|Design|Build" and "Let's connect"/"Reach out"), `/featured-project-page` (used as a copy source below, not rebuilt as its own page), `/gallery` (photo grid only).
+
+## Real Contact Info (corrects the demo site)
+Email: **grooker@roobiksbuilds.com** (demo had a typo: `roobikbuilds.com`)
+Phone: (503) 858-4137 — matches demo, unchanged
+Address: **Forest Grove, OR 97116** (demo fabricated "121 Second Street, Mount Holly, NJ 08060" — discard entirely)
+Houzz profile (real, verified): https://www.houzz.com/pro/roobiksbuilds_233745
+Instagram: @roobiksbuilds — not confirmed via roobiksbuilds.com's social-links binding (which only resolved a Houzz URL), but independently verified real via the live Instagram widget embedded on the demo site showing actual posts. Keep.
+LinkedIn: linkedin.com/in/gaberooker/ — found on the demo site footer, matches Gabe's real name; not independently re-confirmed on roobiksbuilds.com but plausible and low-risk to keep.
+
+## Real Business Identity & Founding
+"Roobiks Builds is a custom commodity builder and renovation company in the 'Silicon Forest' of Oregon.
+Since 2014, Roobiks Builds Design and Construction has teamed up with local contractors to create homes
+and backyards that reflect our passion, commitment, and excellence for both design and service." (verbatim,
+homepage)
+
+Real taglines (verbatim, not currently used in the rebuild — candidates for future copy work):
+- "PNW inspired design. Tailored client experiences." (H1, homepage)
+- "Dream|Design|Build" (H1, /connect)
+- "Your home is a reflection of you." (H2, homepage)
+- "We make your design aspirations come true." (H2, /gallery)
+
+Real "Our Mission" copy (verbatim, /our-story — not yet integrated into the rebuild's About page):
+"Roobiks Builds has been building outdoor structures for the better part of the last decade. From humble
+beginnings, our company growth has accelerated into the early 2020's, ushering in custom fences and decks
+for everyone. As a constantly evolving practice, we believe quality carpentry is a rapidly dissipating
+craft. As a direct result, customer experiences have been flooded with negativity and distrust. Our mission
+is to change the outlook of carpenters by utilizing an improved recipe of quality, communication, and
+professional construction. Our experience and mastery of design will ensure a quality building experience.
+We look forward to working with you on your next home or renovation project."
+
+## Real Team Bios (verbatim, /our-story — About the Team)
+### Gabriel "Gabe" Rooker — Founder
+"Originator of 'Roobiks Builds', he spends most of his time advertising for new fences, decks, and design
+renders created on SketchUp. Before opening his own carpentry practice, Gabe was apart of the FGHS Viking
+house and full-time builder for Rick's Custom Fencing and Decking. Alongside being an accomplished swimmer
+in the Olympic trials and NCAA, he also received his BS in Engineering, Applied Mathematics, and Physics
+from the University of Wyoming (Go Pokes!). As a PNW native, Gabe enjoys the outdoors with family and
+friends in the extended PDX area. On the off chance he is not around, his home away from home is in the
+deserts of Arizona with his long time partner Astrid. While there, he often enjoys an occasional hike in
+paradise valley and building custom home furniture inside his 'Trailer shop'."
+
+### Vincenzo "Vinny" Rooker — Cabinetry & Countertops
+"California born but raised in Peru, Indiana, Vinny is the youngest of the Rooker generation and cousin to
+Gabe Rooker. As the youngest Rooker to join the Self-Employed movement, he personifies the energy, youth,
+and optimism Roobiks Builds delivers to its customers. Vinny graduated from Maconaquah High School,
+receiving his Diploma with honorable mentions. Shortly after, he continued his education by joining the
+trades working under his father's construction company. Vinny is an accomplished diver on 1m and 3m
+springboards during high school. He was ranked in the top Ten in Indiana, even being extended options to
+dive for Alabama in the NCAA. Establishing his stake in the construction trade with Rooker Enterprises
+underneath the company Cabinet Guy, Vinny specializes in cabinet/countertops sales, installation,
+manufacturing. Being reared around power tools at an early age, his contributions to Roobiks Builds have
+proven themselves over. When Vinny is not in the office, he enjoys spending time with his Belgian
+Malinoiois 'Zeus' and exploring the PNW."
+
+## Testimonials (Real, Full Text — supersedes the truncated demo version)
+### Linda Wilkinson — Houzz review #2044559, 5 stars, project date 2024-05-01
+"I bought a "forever" condo with a fabulous view and great bones about a year and a half ago. I've been
+working on reno since then. The last things on my list were the kitchen and master bath - 2 big ticket,
+time-consuming projects. I had a number of bids - Roobiks was neither the cheapest or most expensive. I
+chose them because the estimator (Gabe) was the owner, he understood and respected my budget, made
+intelligent suggestions, and did not waste my time. I got to choose my tile, granite, faucets, etc. and
+there was no bait and switch. His people showed up on time, were competent, friendly, and the project was
+done on time and on budget and with no drama. It took under 4 weeks. He pitches in personally to make sure
+things stay on track. Excellent communication. But above that - beyond that - the results are unbelievable!
+My place was stuck in the 70s - baby blue formica, cracked yellow tiles - heinous. And now, well, it's
+fabulous. I'm attaching some pics, but it doesn't do it justice. The granite fluoresces and is pretty glam!
+I highly recommend Roobiks - if you can get on their schedule it will likely be the best contractor
+experience you've ever had."
+
+### Rosy Arenas — Houzz review #2002474, 5 stars, project date 2024-01-02
+(Unchanged from demo — matches real source exactly.) "We live in Texas but own a condo in Oregon that
+needed a half bath fixed after a leak was detected. The tile had to be removed, the subfloor had to
+leveled, and the new tile and toilet installed. Gabe came by and was very knowledgeable of the work that
+was needed. We had received three different quotes and Roobiks Build was the best. Gabe stayed in
+communication with us throughout the process. Highly recommend Roobiks Build and will definitely reach out
+to them should we need additional work in the future."
+
+## Real Projects (replaces the 6 fabricated demo case studies)
+7 real projects exist on roobiksbuilds.com, each with a real photo gallery (photo counts below). Only some
+have accompanying narrative copy — found on `/featured-project-page`, which shows 5 caption paragraphs for
+what appear to be 2 of the 7 formal projects (multiple photos/captions per project). Where a project has no
+confirmed verbatim narrative, the rebuild does NOT invent a Challenge/Solution/Result story (learned from
+the demo-project mistake) — it shows the real name and real photo(s) only.
+
+### Gales Creek Terrace Fences (id 7089592, 3 photos) — narrative CONFIRMED
+Real photo shows a striking cedar-lattice-and-black-steel-frame fence atop a concrete block retaining wall,
+PNW residential neighborhood. Matches this verbatim copy from `/featured-project-page`:
+"Project Feature: PNW Retaining Crown Fence — This PNW project kicked off the multi colored fence, doubled
+with dark outlines and clean cedar interiors. With a bold color scheme and original woodwork, we were able
+to achieve true depth of field with inset square lattice panel accented by dark rails and posts. RB
+quality: the Deep black was achieved by charring the exterior with a torch flame!"
+Also includes a photo of the SketchUp 3D design render used to plan this build.
+
+### Gale Creek Terrace Accented Steps (id 7107428, 4 photos) — narrative CONFIRMED
+Composite-decking exterior stairs with black balusters. Matches:
+""Cascadian Steps" were framed in and decked by none other than our owner, Gabe Rooker. Known as the "Stair
+guy", he carefully created this beautiful piece. PVC decking (shown in the picture) is manufactured by Wolf
+Decking, which boasts up to 50 year stain and fade resistance. RB Quality: This stairway was an odd angle,
+which required over 114 angled cuts. Gabe completed this over lunch break." — and a second caption for the
+same project: "Above is the Gales Creek Accented Stairs original inspiration from a two story deck
+constructed in Chicago during the pandemic of 22'. These stairs utilize the most of composite decking has
+to offer with saddle colored Trex and High end White Behr stain. RB Quality: The saddle colored deck was
+the only HOA color compliant material. The white stain was an after thought to perfectly compliment the
+brown and black ornate balusters."
+
+### Custom Cedar Patio Cover (id 7107435, 4 photos) — no confirmed narrative
+Real photo shows a cedar pergola/patio cover under construction against a modern PNW home, black chain-link
+fence visible in foreground. Possibly related to this unattributed `/featured-project-page` caption (not
+confirmed to be this specific project, so not used as a direct quote): a deck built to hold vehicle weight
+with poured Sonotubes and custom Tigerwood decking.
+
+### Wismer Ridge Deck Resurface (id 7110896, 7 photos) — no confirmed narrative
+Real photo: gray composite deck resurface with stairs, PNW backyard.
+
+### Kitchen and Bath Remodel (id 7537870, 10 photos) — no formal narrative, but this is what the two real
+testimonials (Linda Wilkinson, Rosy Arenas) are describing. Real photos include a dated "before" kitchen
+(matches Linda's "stuck in the 70s" description) and a material/tile selection session.
+
+### Closet Organizers (id 7116841, 6 photos) — no confirmed narrative. Real photo: finished white wire-shelf walk-in closet system.
+
+### Murphy Bed Cabinet (id 7112393, 13 photos) — no confirmed narrative. Real photo: mid-install murphy bed cabinet, sage green finish.
+
+## Real Assets — Houzz CDN
+Logo (real, matches the demo site's mark exactly — same "RB" wood-engraved monogram): confirms the demo
+site's logo.png is authentic and correctly reused.
+Photo URL pattern: `https://st.hzcdn.com/simgs/{externalId}_{size}-{contentModified}/{url-slug}.jpg` — size
+`9` ≈ 742–990px (card use), size `14` = full resolution (hero use). Verified working, hotlinked directly
+(same pattern as Unsplash usage elsewhere in this project) rather than downloaded into `public/`.
+Note: the homepage's large background "Almador/Eastmont/Ash Tree/Tasman Street Residence" photos are
+**generic Houzz stock/ideabook images** used as low-opacity (0.1) decorative section backgrounds — not
+Roobiks' own work. Not used in the rebuild.

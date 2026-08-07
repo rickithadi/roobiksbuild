@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, AtSign, ExternalLink, ArrowRight } from "lucide-react";
+import { Phone, Mail, MapPin, AtSign, ExternalLink, House, ArrowRight } from "lucide-react";
 import { site, services } from "../lib/site";
 
 export default function Footer() {
@@ -116,6 +116,15 @@ export default function Footer() {
               className="grid h-9 w-9 place-items-center rounded-full border border-paper/20 text-paper/80 hover:border-brand-bright hover:text-brand-bright"
             >
               <ExternalLink size={16} />
+            </a>
+            <a
+              href={site.houzz}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Houzz"
+              className="grid h-9 w-9 place-items-center rounded-full border border-paper/20 text-paper/80 hover:border-brand-bright hover:text-brand-bright"
+            >
+              <House size={16} />
             </a>
           </div>
         </div>

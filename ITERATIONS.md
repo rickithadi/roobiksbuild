@@ -1,6 +1,8 @@
 # Roobiks Builds — Rebuild Iterations
 
-Source: https://roobiksbuilds.techmirzafiverr.com/index.php
+Original demo source: https://roobiksbuilds.techmirzafiverr.com/index.php (a Fiverr freelancer mockup —
+see Iteration 2 for the discovery that this was not the client's real site)
+Real business source: https://roobiksbuilds.com (Houzz Pro)
 Repo: https://github.com/rickithadi/roobiksbuild
 Live: https://roobiksbuild.vercel.app (Vercel project `nineline/roobiksbuild` — note: the user's
 global CLAUDE.md says Vercel scope `9line`; the actual team slug is `nineline`, `9line` is not a
@@ -85,7 +87,67 @@ valid scope and was rejected by the CLI. Used `nineline` and flagged this to the
 
 **Known remaining issues:**
 - Formspree not yet configured (`VITE_FORMSPREE_ID` unset) — contact form and newsletter signup will hit the error state until the client sets this up
-- Stats strip (500+ customers, 800+ fences, etc.) uses placeholder figures — source counters were corrupted/unusable; flagged inline on the page and needs client confirmation before launch
-- Not yet merged to `main` — pending final build gate + push
+- Stats strip (500+ customers, 800+ fences, etc.) uses placeholder figures — source counters were corrupted/unusable; flagged inline on the page and needs client confirmation before launch (update: "Years of Expertise: 12+" is now confirmed accurate, see Iteration 2)
+
+---
+
+## Iteration 2 — Real business site discovered; replaced fabricated content ✓ FINAL
+**Branch:** rebuild/iter-2
+**Trigger:** user pointed to https://roobiksbuilds.com — the client's actual live website, not the
+`techmirzafiverr.com` Fiverr demo mockup this rebuild was originally (and reasonably, at the time) built
+from.
+
+**What was discovered:** scraped the real site (Houzz Pro / Next.js — parsed the embedded `__NEXT_DATA__`
+JSON directly rather than HTML-scraping) and found the demo site diverged from reality in several
+significant ways. Full detail in `CONTENT.md § Real Site Extraction`.
+
+**Corrected (real facts replacing wrong ones):**
+- Email: `grooker@roobikbuilds.com` (demo typo) → `grooker@roobiksbuilds.com` (real)
+- Address: fabricated "121 Second Street, Mount Holly, NJ 08060" → real "Forest Grove, OR 97116"
+- Linda Wilkinson testimonial: demo version was truncated mid-story → replaced with the full real Houzz
+  review text
+- Added Houzz profile link (real, verified) to the footer
+
+**Replaced (fabricated content that should never have been presented as fact):**
+- All 6 "Projects" case studies (Peterson Family, Maplewood Community, Jackson Residence, Anderson Estate,
+  Brightstar Stables, Willow Creek Farms) were entirely invented for the Fiverr demo — they don't exist on
+  the real site. I had treated them as verbatim source content per the content-parity rule, which was a
+  mistake carried forward from trusting the wrong source. Replaced with the 7 real projects (Gales Creek
+  Terrace Fences, Gale Creek Terrace Accented Steps, Custom Cedar Patio Cover, Wismer Ridge Deck Resurface,
+  Kitchen and Bath Remodel, Closet Organizers, Murphy Bed Cabinet), real photos hotlinked from Houzz's CDN,
+  and only the 2 projects with a confirmed real verbatim narrative show a story quote — the other 5 show
+  real name/photo only rather than an invented Challenge/Solution/Result.
+- `ProjectDetail.tsx` reworked: dropped the client/date/challenge/solution/result fields (no longer
+  applicable) in favor of an optional `story`/`storyAttribution` quote block that only renders when real
+  source text exists.
+
+**Added (real content that was missing, not previously on the rebuild at all):**
+- Hero photo swapped from a verified-but-stock Unsplash image to a real Roobiks Builds job-site photo (the
+  same charred-cedar-lattice fence as the "Gales Creek Terrace Fences" project)
+- About page: added the real "Our Mission" copy and a new "Meet the Team" section with both real bios
+  (Gabe Rooker — founder, University of Wyoming engineering degree, ex-Rick's Custom Fencing and Decking;
+  Vinny Rooker — cabinetry/countertops, previously unmentioned on the site at all)
+- Confirmed "12 Years of Glorious Experience" is factually accurate (real site states founded 2014), not
+  just a plausible-sounding placeholder
+
+**Build gate:** `npm run build` clean before and after all changes (prebuild sitemap generator
+auto-picked up the new project slugs with zero manual editing — confirms the earlier VITE_SITE_URL
+centralization work paid off)
+
+**Visual verification:** screenshotted home/about/projects/project-detail at 1440px and home at 375px —
+real hero, real team photos, real project photos, real address/email in footer all confirmed rendering
+correctly, no broken images, no overflow
+
+**Mobile check:** 375px pass, no horizontal overflow, images load correctly
+
+**Known remaining gaps:**
+- `og-image.jpg` (social share preview) still uses the earlier Unsplash stock photo, not real Roobiks
+  photography — real source images weren't available at the 1200×630 landscape aspect needed without
+  cropping into unusable content; left as a follow-up rather than shipping a bad crop
+- Instagram and LinkedIn links kept from the demo site — independently plausible (Instagram verified via
+  live widget with real posts; LinkedIn matches Gabe's real name) but not re-confirmed via roobiksbuilds.com
+  itself, which only resolved a Houzz profile link in its social-links data
+- 5 of 7 real projects show name/photo only (no story text) since no verbatim narrative exists for them —
+  intentional, not a gap to fix by inventing copy
 
 ---

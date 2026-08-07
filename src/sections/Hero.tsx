@@ -10,7 +10,7 @@ export default function Hero() {
     <section className="relative overflow-hidden bg-ink text-paper">
       <img
         src={heroImage}
-        alt="A newly built cedar privacy fence enclosing a residential backyard"
+        alt="A charred-cedar lattice fence atop a stone retaining wall, a real Roobiks Builds installation in Forest Grove, Oregon"
         loading="eager"
         fetchPriority="high"
         className="absolute inset-0 h-full w-full object-cover opacity-45"
