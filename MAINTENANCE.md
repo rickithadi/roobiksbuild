@@ -60,24 +60,25 @@ Find the service you want to change, update the text, commit.
 
 ## Updating a Project or Adding a New One
 
-Projects live in `src/lib/site.ts`, in the `projects` array. Each one has a `title`, `category`, `image`, `client`, `location`, `date`, and three story fields: `challenge`, `solution`, `result` — these become the "The Challenge / Our Solution / The Result" sections on that project's page.
+Projects live in `src/lib/site.ts`, in the `projects` array. Each one has a `title`, `category`, `image`, and optionally `location` and a `story`/`storyAttribution` quote — the quote only shows on the page if you fill it in. Two projects (Gales Creek Terrace Fences, Gale Creek Terrace Accented Steps) have a real quote already; the rest intentionally don't, since we didn't want to invent a story that wasn't yours.
 
-To add a new project, copy an existing entry, give it a unique `slug`, and fill in the fields. It will automatically appear on the `/projects` page and get its own page at `/projects/your-slug`.
+To add your own write-up to any project, add a `story` (the write-up) and `storyAttribution` (how you want it credited, e.g. a project name or your own name) to that project's entry.
+
+To add a brand-new project, copy an existing entry, give it a unique `slug`, and fill in the fields. It will automatically appear on the `/projects` page and get its own page at `/projects/your-slug`.
 
 ---
 
-## Replacing Placeholder Photos
+## Replacing or Adding Photos
 
-The site currently uses licensed stock photography, carefully matched to each section (see PITCH.md for why — your current site's own project photos were mismatched with the wrong subjects). Nothing needs to change before launch, but when you have your own job-site photos, replacing these will make the site feel even more authentic.
+Project and service photos are hotlinked from real sources — your Houzz photo library (for projects) and licensed stock (for the two fencing sub-services that don't have a matching Houzz project yet: Security & Privacy Fencing, Pool Fencing). Nothing needs to change before launch.
 
 **The easiest way**: email us your photos (high-resolution JPGs) with a note about which section each one is for (hero, a specific project, a specific service). We'll update them.
 
-**If you want to do it yourself**: photos are set as `image` values in `src/lib/site.ts` (services and projects) and `heroImage` near the top of the same file. Replace the URL with a link to your own hosted image.
+**If you want to do it yourself**: photos are set as `image` values in `src/lib/site.ts` (services and projects) and `heroImage` near the top of the same file. Replace the URL with a link to your own hosted image, or a new photo from your Houzz library.
 
-Highest-value photos to replace first:
-1. **Hero image** (top of homepage) — a real photo of your best fence installation
-2. **The 6 project photos** — one real photo per completed project shown on `/projects`
-3. **Stats strip numbers** — "500+ Satisfied Customers," "800+ Fences Installed," etc. on the homepage are placeholders (your current site's counters were broken and showing garbled numbers) — send us your real figures and we'll update `src/lib/site.ts`'s `stats` array
+Remaining photo gap:
+1. **Social share preview image** (`public/og-image.jpg`, shown when the site link is shared on social media/iMessage) still uses a stock photo rather than your own work — send us a wide (landscape) high-res photo of your best installation and we'll swap it in.
+2. **Stats strip numbers** — "500+ Satisfied Customers," "800+ Fences Installed," "15+ Skilled Builders" on the homepage are still placeholders (your "12 Years of Expertise" figure is confirmed accurate, since your company was founded in 2014) — send us the real figures and we'll update `src/lib/site.ts`'s `stats` array.
 
 ---
 
@@ -87,7 +88,7 @@ Your inquiry form and newsletter signup are currently in demo mode. To activate 
 
 1. Go to [formspree.io](https://formspree.io) and create a free account
 2. Click **New Form**
-3. Set the email to: grooker@roobikbuilds.com
+3. Set the email to: grooker@roobiksbuilds.com
 4. Copy the **Form ID** — it looks like `xrgvpkjq`
 5. In your Vercel dashboard: `roobiksbuild` project → Settings → Environment Variables
 6. Add a variable: `VITE_FORMSPREE_ID` = (paste your Form ID)
