@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArrowLeft, MapPin, User, Calendar } from "lucide-react";
+import { ArrowLeft, MapPin, Quote } from "lucide-react";
 import { getProjectBySlug, projects } from "../lib/site";
 import JsonLd from "../components/JsonLd";
 
@@ -21,8 +21,7 @@ export default function ProjectDetail() {
           name: project.title,
           about: project.category,
           image: project.image,
-          locationCreated: project.location,
-          dateCreated: project.date,
+          ...(project.location ? { locationCreated: project.location } : {}),
         }}
       />
 
@@ -47,55 +46,33 @@ export default function ProjectDetail() {
           <h1 className="mt-3 text-[clamp(1.75rem,4vw,3rem)] font-bold leading-tight text-paper">
             {project.title}
           </h1>
+          {project.location && (
+            <p className="mt-4 flex items-center gap-2 text-sm text-paper/70">
+              <MapPin size={15} /> {project.location}
+            </p>
+          )}
         </div>
       </section>
 
       <article className="bg-paper py-16 sm:py-20">
         <div className="mx-auto max-w-3xl px-5 sm:px-8">
-          {/* Meta row: client / location / date */}
-          <div className="grid grid-cols-1 gap-6 rounded-sm border border-line bg-paper-deep p-6 sm:grid-cols-3 sm:p-8">
-            <div className="flex items-start gap-3">
-              <User size={18} className="mt-0.5 shrink-0 text-brand" />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand">
-                  Client
-                </p>
-                <p className="mt-1 text-sm font-medium text-ink">{project.client}</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <MapPin size={18} className="mt-0.5 shrink-0 text-brand" />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand">
-                  Location
-                </p>
-                <p className="mt-1 text-sm font-medium text-ink">{project.location}</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <Calendar size={18} className="mt-0.5 shrink-0 text-brand" />
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand">
-                  Completed
-                </p>
-                <p className="mt-1 text-sm font-medium text-ink">
-                  {new Date(project.date).toLocaleDateString("en-US", {
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <h2 className="mt-12 font-display text-2xl font-bold text-ink">The Challenge</h2>
-          <p className="mt-4 text-base leading-relaxed text-ink-soft">{project.challenge}</p>
-
-          <h2 className="mt-10 font-display text-2xl font-bold text-ink">Our Solution</h2>
-          <p className="mt-4 text-base leading-relaxed text-ink-soft">{project.solution}</p>
-
-          <h2 className="mt-10 font-display text-2xl font-bold text-ink">The Result</h2>
-          <p className="mt-4 text-base leading-relaxed text-ink-soft">{project.result}</p>
+          {project.story ? (
+            <figure className="rb-frame rounded-sm border border-line bg-paper-deep p-8">
+              <Quote size={22} className="text-brand" />
+              <blockquote className="mt-4 text-lg leading-relaxed text-ink-soft">
+                {project.story}
+              </blockquote>
+              {project.storyAttribution && (
+                <figcaption className="mt-4 text-sm font-semibold text-brand">
+                  — {project.storyAttribution}
+                </figcaption>
+              )}
+            </figure>
+          ) : (
+            <p className="text-base leading-relaxed text-ink-soft">
+              Real, completed work from the Roobiks Builds portfolio.
+            </p>
+          )}
         </div>
 
         <div className="mx-5 mt-16 rounded-sm border border-line bg-paper-deep p-8 text-center sm:mx-auto sm:max-w-3xl">

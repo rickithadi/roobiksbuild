@@ -22,10 +22,25 @@ const pillars = [
   },
 ];
 
+const team = [
+  {
+    name: "Gabe Rooker",
+    role: "Founder",
+    photo: "https://st.hzcdn.com/simgs/d161b5cd03b9e71c_9-1876/gale-creek-terrace-accented-steps.jpg",
+    bio: "Gabe founded Roobiks Builds after working as a full-time builder for Rick's Custom Fencing and Decking. He holds a BS in Engineering, Applied Mathematics, and Physics from the University of Wyoming, and still draws every design himself in SketchUp before a crew breaks ground. A PNW native based in the extended Portland area, Gabe is known on-site as \"the stair guy\" — he frames and decks the trickiest builds personally.",
+  },
+  {
+    name: "Vinny Rooker",
+    role: "Cabinetry & Countertops",
+    photo: "https://st.hzcdn.com/simgs/fd71d1fd03c0d812_9-1120/murphy-bed-cabinet.jpg",
+    bio: "Gabe's cousin and the newest Rooker to join the business, Vinny came up in the trades working under his father's construction company before establishing his own stake in cabinetry and countertops. He specializes in sales, installation, and manufacturing — the custom cabinet and closet work you'll see in the Projects section is his.",
+  },
+];
+
 export default function About() {
   return (
     <>
-      <PageHeader eyebrow="Our Story" title="We Built and Installed Fences Across the USA" crumb="About Us" />
+      <PageHeader eyebrow="Our Story" title="PNW Inspired Design, Since 2014" crumb="About Us" />
 
       <section className="bg-paper py-20 sm:py-28">
         <div className="mx-auto grid max-w-7xl gap-14 px-5 sm:px-8 lg:grid-cols-[1fr_1fr] lg:items-center">
@@ -34,14 +49,16 @@ export default function About() {
               12 Years Of Glorious Experience
             </p>
             <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-              We specialize in high-quality fencing solutions, offering durable and stylish fences
-              for homes and businesses. Our expert team ensures precise installation with a focus
-              on security, privacy, and aesthetics.
+              Roobiks Builds has been building outdoor structures for the better part of the last
+              decade. From humble beginnings in Oregon's "Silicon Forest," our work has grown into
+              custom fences, decks, and renovations built with an improved recipe: quality,
+              communication, and professional construction — the opposite of the negative
+              contractor experiences so many homeowners have come to expect.
             </p>
             <p className="mt-4 text-base leading-relaxed text-ink-soft">
-              Roobiks Builds is led by owner and estimator Gabe Rooker, who walks every property
-              in person before a number ever goes on paper. That's the difference our clients
-              mention most — not the lowest bid, but the most honest one.
+              Roobiks Builds is led by founder Gabe Rooker, who walks every property in person and
+              draws every design himself before a number ever goes on paper. That's the difference
+              our clients mention most — not the lowest bid, but the most honest one.
             </p>
             <Link
               to="/contact"
@@ -52,8 +69,8 @@ export default function About() {
           </div>
           <div className="rb-frame overflow-hidden rounded-sm">
             <img
-              src="https://roobiksbuilds.techmirzafiverr.com/frontend/assets/images/16.jpg"
-              alt="Roobiks Builds team members on a completed fence installation"
+              src="https://st.hzcdn.com/simgs/7e512592039631df_14-8685/gales-creek-terrace-fences.jpg"
+              alt="A real Roobiks Builds cedar and steel fence installation in Forest Grove, Oregon"
               loading="lazy"
               className="h-full w-full object-cover"
             />
@@ -70,6 +87,37 @@ export default function About() {
               <p className="mt-2 text-sm leading-relaxed text-ink-soft">{p.body}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-ink py-20 text-paper sm:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-bright">
+            Meet the Team
+          </p>
+          <h2 className="mt-3 text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold text-paper">
+            Family-run, hands-on
+          </h2>
+
+          <div className="mt-12 grid gap-10 sm:grid-cols-2">
+            {team.map((member) => (
+              <div key={member.name} className="flex gap-5">
+                <img
+                  src={member.photo}
+                  alt={member.name}
+                  loading="lazy"
+                  className="rb-frame h-24 w-24 shrink-0 rounded-full object-cover"
+                />
+                <div>
+                  <h3 className="font-display text-lg font-bold text-paper">{member.name}</h3>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-brand-bright">
+                    {member.role}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-paper/70">{member.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
