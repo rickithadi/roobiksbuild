@@ -26,12 +26,37 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://roobiksbuild.vercel.app/blog/best-fencing-options-for-farms-and-ranches</loc>
+    <loc>https://roobiksbuild.vercel.app/contact</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://roobiksbuild.vercel.app/projects/bi-folding-driveway-gate-keypad-entry</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://roobiksbuild.vercel.app/blog/why-security-fencing-is-essential-for-your-property</loc>
+    <loc>https://roobiksbuild.vercel.app/projects/smart-sliding-gate-private-community</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://roobiksbuild.vercel.app/projects/modern-horizontal-slat-fence</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://roobiksbuild.vercel.app/projects/ornamental-wrought-iron-fence-luxury-estate</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://roobiksbuild.vercel.app/projects/electric-horse-fence-equestrian-facility</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://roobiksbuild.vercel.app/projects/cattle-fencing-large-ranch</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -41,13 +66,18 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://roobiksbuild.vercel.app/blog/best-fencing-options-for-farms-and-ranches</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://roobiksbuild.vercel.app/blog/how-much-does-a-fence-actually-cost</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://roobiksbuild.vercel.app/contact</loc>
+    <loc>https://roobiksbuild.vercel.app/blog/why-security-fencing-is-essential-for-your-property</loc>
     <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>

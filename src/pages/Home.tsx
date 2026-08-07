@@ -18,7 +18,7 @@ export default function Home() {
           name: site.name,
           description:
             "Roobiks Builds designs, builds, and installs durable, stylish fencing for homes, businesses, and farms nationwide.",
-          url: "https://roobiksbuild.vercel.app/",
+          url: `${site.url}/`,
           email: site.email,
           telephone: site.phone,
           address: {
